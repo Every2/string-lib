@@ -1,5 +1,4 @@
 #include "../include/vec_string.h"
-#include "../include/string_lib.h"
 #include <stdlib.h>
 
 void delete(String str) {
@@ -16,11 +15,11 @@ String* new() {
 }
 
 ///If you know the size of string or wanna avoid reallocation overhead use this function
-String* with_capacity(unsigned int capacity) {
+String* with_capacity(const size_t capacity) {
     String* str = malloc(sizeof(String));
-    str->data = (char*)malloc(sizeof(char));
+    str->data = (char*)malloc(sizeof(char) * capacity);
     str->size = 0;
-    str->capacity = capacity;
+    str->capacity = capacity + 1;
     return str;
 }
 
